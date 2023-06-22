@@ -1,5 +1,5 @@
 
-![Logo](Logo.png)
+![Logo](logo.png)
 
 FactionLegends is an outstanding faction plugin that brings a unique gaming experience to your server. Equipped with advanced features, it allows you to organize exciting faction wars and create alliances between different factions. Additionally, the plugin offers various extensions such as FactionLegendsUI (coming soon) and many more, which further enrich your customization options.
 
