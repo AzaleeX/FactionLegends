@@ -22,9 +22,7 @@ for Contributing just **create a fork** of this plugin and then create a Pull Re
 
 
 ## Authors
-
+[![Discord Presence](https://lanyard-profile-readme.vercel.app/api/846395226640613396)](https://discord.com/users/846395226640613396)
 - [@AzaleeX](https://www.github.com/AzaleeX)
-[![Discord Presence](https://lanyard-profile-readme.vercel.app/api/846395226640613396
-                            )](https://discord.com/users/846395226640613396)
 
 
