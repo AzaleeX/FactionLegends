@@ -1,0 +1,6 @@
+name: FactionLegends
+description: FactionLegends is an outstanding faction plugin that brings a unique gaming experience to your server.
+author: Azalee (@AzaleeX)
+version: 0.0.1-beta
+api: 5.0.0
+main: Azalee\FactionLegends\FactionLegends
