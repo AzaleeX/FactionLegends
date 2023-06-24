@@ -28,6 +28,14 @@ class FactionLegends extends PluginBase
 
     public function onEnable(): void
     {
+        $virion = $this->getServer()->getPluginManager()->getPlugin('DEVirion');
+        if (!$virion)
+        {
+            $this->getLogger()->error("DEVirion was not found. Download DEVirion at https://github.com/poggit/devirion/tree/pm5.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+            return;
+        }
+
         self::setInstance($this);
         $this->saveDefaultConfig();
         $this->saveResource("lang.yml");
