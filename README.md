@@ -2,7 +2,7 @@
 ![logo](logo.png)
 
 FactionLegends is an outstanding faction plugin that brings a unique gaming experience to your server. Equipped with advanced features, it allows you to organize exciting faction wars and create alliances between different factions. Additionally, the plugin offers various extensions such as FactionLegendsUI (coming soon) and many more, which further enrich your customization options.
----
+***
 ### Config
 With FactionLegends, you benefit from a simple and efficient configuration. Its user-friendly interface makes it easy to set up the settings of your choice, allowing you to customize the faction experience to your preference. Thanks to its flexible options, you can configure essential aspects of the plugin, such as war rules, alliance bonuses and much more.
 
