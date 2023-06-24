@@ -11,7 +11,8 @@ With FactionLegends, you benefit from a simple and efficient configuration. Its 
 The FactionLegends plugin also has a powerful API, which gives you the ability to create Factions from the API. This API opens up new perspectives in terms of plugin development.
 
 ### Use Virions
-Yes FactionLegends use ![libasynql](https://github.com/poggit/libasynql)
+Yes FactionLegends use: 
+- [libasynql](https://github.com/poggit/libasynql)
 
 ## Contributing
 
