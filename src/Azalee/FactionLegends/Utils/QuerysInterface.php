@@ -22,4 +22,11 @@ interface QuerysInterface
     public const FactionLegends_Player_Init = "factionlegends.player.init";
     public const FactionLegends_Home_Init = "factionlegends.home.init";
     public const FactionLegends_Lang_Init = "factionlegends.lang.init";
+
+    //LOAD
+
+    public const FactionLegends_Faction_Load = "factionlegends.faction.load";
+    public const FactionLegends_Player_Load = "factionlegends.player.load";
+    public const FactionLegends_Home_Load = "factionlegends.home.load";
+    public const FactionLegends_Lang_Load = "factionlegends.lang.load";
 }
