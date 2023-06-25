@@ -26,7 +26,7 @@ class ConfigUtils
         $this->config = FactionLegends::getInstance()->getConfig()->getAll();
     }
 
-    public function getInfoConfig(string $value): mixed
+    public function getInfoConfig(string $value)
     {
         return $this->config[$value];
     }
