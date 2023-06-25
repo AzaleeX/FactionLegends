@@ -16,11 +16,27 @@
 
 namespace Azalee\FactionLegends\API;
 
+use Azalee\FactionLegends\FactionLegends;
+use Azalee\FactionLegends\Utils\QuerysInterface;
 use pocketmine\utils\SingletonTrait;
 
 class FactionLegendsAPI
 {
+    private array $factions = [];
+    private array $players = [];
+    private array $home = [];
+    private array $lang = [];
+
     use SingletonTrait;
 
-
+    private function LoadData(FactionLegends $plugin): void
+    {
+        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Faction_Load, [], function (array $row): void
+        {
+            foreach($row as $rows)
+            {
+                
+            }
+        });
+    }
 }
