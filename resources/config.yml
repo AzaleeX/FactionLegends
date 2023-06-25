@@ -21,4 +21,9 @@ DATABASE-TYPE:
       password: ""
       schema: "factionlegends" #Change this
     worker-limit: 1
+#The plugin has multiple language support:
+#- American English (en-US)
+#- British English (en-GB)
+#- French (FR)
+language: "en-US"
 

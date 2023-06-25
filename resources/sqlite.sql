@@ -15,6 +15,11 @@ CREATE TABLE IF NOT EXISTS factions
     claims TEXT
     );
 -- # }
+
+-- # { load
+SELECT * FROM factions;
+-- # }
+
 -- # }
 
 -- # { player
@@ -29,6 +34,11 @@ CREATE TABLE IF NOT EXISTS players
     );
 
 -- # }
+
+-- # { load
+SELECT * FROM players;
+-- # }
+
 -- # }
 
 -- # { home
@@ -43,6 +53,11 @@ CREATE TABLE IF NOT EXISTS home
     );
 
 -- # }
+
+-- # { load
+SELECT * FROM home;
+-- # }
+
 -- # }
 
 -- # { lang
@@ -52,9 +67,14 @@ CREATE TABLE IF NOT EXISTS home
 CREATE TABLE IF NOT EXISTS lang
 (
     name VARCHAR(36) PRIMARY KEY,
-    lang VARCHAR(255)
+    lang VARCHAR(255),
     );
 
 -- # }
+
+-- # { load
+SELECT * FROM lang;
+-- # }
+
 -- # }
 -- #}
