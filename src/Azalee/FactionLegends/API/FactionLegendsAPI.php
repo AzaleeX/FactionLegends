@@ -18,6 +18,7 @@ namespace Azalee\FactionLegends\API;
 
 use Azalee\FactionLegends\FactionLegends;
 use Azalee\FactionLegends\Utils\QuerysInterface;
+use pocketmine\player\Player;
 use pocketmine\utils\SingletonTrait;
 
 class FactionLegendsAPI
@@ -29,14 +30,81 @@ class FactionLegendsAPI
 
     use SingletonTrait;
 
-    private function LoadData(FactionLegends $plugin): void
+    public function loadData(FactionLegends $plugin): void
     {
         $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Faction_Load, [], function (array $row): void
         {
             foreach($row as $rows)
             {
-                
+                $this->factions =
+                    [
+                        "name" => $rows["name"],
+                        "description" => $rows["description"],
+                        "players" => $rows["players"],
+                        "power" => $rows["power"],
+                        "money" => $rows["money"],
+                        "allies" => $rows["allies"],
+                        "claims" => $rows["claims"]
+                    ];
             }
         });
+        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Player_Load, [], function (array $row): void
+        {
+            foreach($row as $rows)
+            {
+                $this->players =
+                    [
+                        "name" => $rows["name"],
+                        "faction" => $rows["faction"],
+                        "role" => $rows["role"]
+                    ];
+            }
+        });
+        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Home_Load, [], function (array $row): void
+        {
+            foreach($row as $rows)
+            {
+                $this->home =
+                    [
+                        "name" => $rows["name"],
+                        "faction" => $rows["faction"],
+                        "x" => $rows["x"],
+                        "y" => $rows["y"],
+                        "z" => $rows["z"],
+                        "world" => $rows["world"]
+                    ];
+            }
+        });
+        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Lang_Load, [], function (array $row): void
+        {
+            foreach($row as $rows)
+            {
+                $this->lang =
+                    [
+                        "name" => $rows["name"],
+                        "lang" => $rows["lang"]
+                    ];
+            }
+        });
+
+    }
+
+    public function createFaction(string $name, Player $creater): void
+    {
+        $name = strtolower($name);
+        if(array_key_exists($name, $this->factions))
+        {
+
+        }else{
+            $this->factions[$name] = [
+                "name" => $name,
+                "description" => "",
+                "players" => [$creater->getName()],
+                "power" => 0,
+                "money" => 0,
+                "allies" => "",
+                "claims" => ""
+            ];
+        }
     }
 }
