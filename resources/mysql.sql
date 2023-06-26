@@ -49,7 +49,10 @@ CREATE TABLE IF NOT EXISTS home
 (
     name VARCHAR(36) PRIMARY KEY,
     faction VARCHAR(255),
-    role VARCHAR(255)
+    x INTEGER,
+    y INTEGER,
+    z INTEGER,
+    world VARCHAR(255)
     );
 
 -- # }
