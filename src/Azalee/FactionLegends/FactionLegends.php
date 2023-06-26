@@ -13,6 +13,8 @@
 
 namespace Azalee\FactionLegends;
 
+use Azalee\FactionLegends\API\FactionLegendsAPI;
+use Azalee\FactionLegends\Manager\LanguageManager;
 use Azalee\FactionLegends\Utils\ConfigUtils;
 use Azalee\FactionLegends\Utils\QuerysInterface;
 use pocketmine\plugin\PluginBase;
@@ -25,6 +27,7 @@ class FactionLegends extends PluginBase
     use SingletonTrait;
 
     private ?DataConnector $database = null;
+    private ?LanguageManager $lang = null;
 
     public function onEnable(): void
     {
@@ -42,6 +45,8 @@ class FactionLegends extends PluginBase
         $this->saveResource("config.yml");
         ConfigUtils::getInstance()->load();
         $this->dataInit();
+        FactionLegendsAPI::getInstance()->loadData($this);
+        $this->lang = new LanguageManager($this);
     }
 
     public function onDisable(): void
@@ -67,5 +72,10 @@ class FactionLegends extends PluginBase
     public function getDatabase(): ?DataConnector
     {
         return $this->database;
+    }
+
+    public function getLang(): ?LanguageManager
+    {
+        return $this->lang;
     }
 }
