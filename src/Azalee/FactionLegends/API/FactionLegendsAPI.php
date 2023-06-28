@@ -17,6 +17,7 @@
 namespace Azalee\FactionLegends\API;
 
 use Azalee\FactionLegends\FactionLegends;
+use Azalee\FactionLegends\Manager\LanguageManager;
 use Azalee\FactionLegends\Utils\QuerysInterface;
 use pocketmine\player\Player;
 use pocketmine\utils\SingletonTrait;
@@ -26,8 +27,10 @@ class FactionLegendsAPI
     private array $factions = [];
     private array $players = [];
     private array $home = [];
-    private array $lang = [];
-
+    /**
+     * private array $lang = [];
+     * FEATURED for language
+     */
     use SingletonTrait;
 
     public function loadData(FactionLegends $plugin): void
@@ -75,6 +78,8 @@ class FactionLegendsAPI
                     ];
             }
         });
+        /**
+         * FEATURED for language
         $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Lang_Load, [], function (array $row): void
         {
             foreach($row as $rows)
@@ -86,25 +91,34 @@ class FactionLegendsAPI
                     ];
             }
         });
+        */
+    }
 
+    public function existFaction(string $name): bool
+    {
+        return array_key_exists($name, $this->factions);
     }
 
     public function createFaction(string $name, Player $creater): void
     {
-        $name = strtolower($name);
-        if(array_key_exists($name, $this->factions))
+        if(!$this->existFaction($name))
         {
-
-        }else{
             $this->factions[$name] = [
                 "name" => $name,
-                "description" => "",
+                "description" => FactionLegends::getInstance()->getLang()->getMessage("NO_DESCRPTION"),
                 "players" => [$creater->getName()],
                 "power" => 0,
                 "money" => 0,
-                "allies" => "",
-                "claims" => ""
+                "allies" => [],
+                "claims" => []
             ];
+            $this->players[$creater->getName()] = [
+                "name" => $creater->getName(),
+                "faction" => $name,
+                "role" => "leader"
+            ];
+        }else{
+            $creater->sendMessage(FactionLegends::getInstance()->getLang()->getMessage("EXISTING_FACTION"));
         }
     }
 }
