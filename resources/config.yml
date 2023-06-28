@@ -26,4 +26,10 @@ DATABASE-TYPE:
 #- British English (en-GB)
 #- French (FR)
 language: "en-US"
+#Here you can put all the forbidden words to create a faction name that takes into account if the word is found in the faction name.
+banned-names:
+  - fuck
+  - shit
+  - bollocks
+  - crap
 
