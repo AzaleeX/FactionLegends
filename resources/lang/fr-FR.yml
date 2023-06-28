@@ -8,3 +8,16 @@
 # @link https://github.com/AzaleeX
 #
 # French language by Azalee
+
+#Faction
+
+NO_DESCRPTION: "Aucune description"
+
+
+#ROLE NAME
+LEADER_ROLE: "Chef"
+
+MEMBER_ROLE: "Membre"
+
+#ERROR MESSAGE
+EXISTING_FACTION: "Cette faction existe déjà"
