@@ -16,6 +16,8 @@
 
 namespace Azalee\FactionLegends\API;
 
+use Azalee\FactionLegends\Data\Faction;
+use Azalee\FactionLegends\Data\Players;
 use Azalee\FactionLegends\FactionLegends;
 use Azalee\FactionLegends\Manager\LanguageManager;
 use Azalee\FactionLegends\Utils\QuerysInterface;
@@ -94,19 +96,19 @@ class FactionLegendsAPI
         return array_key_exists($name, $this->factions);
     }
 
-    public function getFaction(string $name): array
-    {
-        return $this->factions[$name];
-    }
-
     public function existPlayer(string $name): bool
     {
         return array_key_exists($name, $this->players);
     }
 
-    public function getPlayer(string $name): array
+    public function getFaction(string $name): Faction
     {
-        return $this->players[$name];
+        return new Faction($this->factions[$name]);
+    }
+
+    public function getPlayer(string $name): Players
+    {
+        return new Players($this->players[$name]);
     }
 
     public function createFaction(string $name, Player $creater): void
