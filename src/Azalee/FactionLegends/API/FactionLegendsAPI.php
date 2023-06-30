@@ -43,6 +43,7 @@ class FactionLegendsAPI
                     [
                         "name" => $rows["name"],
                         "description" => $rows["description"],
+                        "status" => $rows["status"],
                         "players" => $rows["players"],
                         "power" => $rows["power"],
                         "money" => $rows["money"],
@@ -106,6 +107,7 @@ class FactionLegendsAPI
             $this->factions[$name] = [
                 "name" => $name,
                 "description" => FactionLegends::getInstance()->getLang()->getMessage("NO_DESCRPTION"),
+                "status" => "invited",
                 "players" => [$creater->getName()],
                 "power" => 0,
                 "money" => 0,

@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS factions
 (
     name VARCHAR(36) PRIMARY KEY,
     description TEXT,
+    status VARCHAR(255),
     players TEXT,
     power INTEGER,
     money INTEGER,
