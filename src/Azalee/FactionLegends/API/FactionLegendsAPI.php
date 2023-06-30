@@ -94,6 +94,21 @@ class FactionLegendsAPI
         return array_key_exists($name, $this->factions);
     }
 
+    public function getFaction(string $name): array
+    {
+        return $this->factions[$name];
+    }
+
+    public function existPlayer(string $name): bool
+    {
+        return array_key_exists($name, $this->players);
+    }
+
+    public function getPlayer(string $name): array
+    {
+        return $this->players[$name];
+    }
+
     public function createFaction(string $name, Player $creater): void
     {
         if(!$this->existFaction($name))
