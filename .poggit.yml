@@ -6,6 +6,6 @@ projects:
   FactionLegends:
     path: ""
     libs:
-      - src: poggit/libasynql/libasynql
+      src: poggit/libasynql/libasynql
       version: ^4.2.0
 ...
