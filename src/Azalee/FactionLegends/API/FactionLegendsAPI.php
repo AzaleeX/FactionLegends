@@ -27,10 +27,7 @@ class FactionLegendsAPI
     private array $factions = [];
     private array $players = [];
     private array $home = [];
-    /**
-     * private array $lang = [];
-     * FEATURED for language
-     */
+    private array $lang = [];
     use SingletonTrait;
 
     public function loadData(FactionLegends $plugin): void
@@ -79,8 +76,6 @@ class FactionLegendsAPI
                     ];
             }
         });
-        /**
-         * FEATURED for language
         $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Lang_Load, [], function (array $row): void
         {
             foreach($row as $rows)
@@ -92,7 +87,6 @@ class FactionLegendsAPI
                     ];
             }
         });
-        */
     }
 
     public function existFaction(string $name): bool
