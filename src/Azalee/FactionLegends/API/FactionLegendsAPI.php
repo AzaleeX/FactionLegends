@@ -9,6 +9,7 @@
  *                                              |___/
  * @author AzaleeX
  * @link https://github.com/AzaleeX
+ * @contributor Aslak
  *
  * use Wiki for use FactionLegendsAPI on https://github.com/AzaleeX/FactionLegends/wiki
  *
@@ -34,104 +35,78 @@ class FactionLegendsAPI
 
     public function loadData(FactionLegends $plugin): void
     {
-        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Faction_Load, [], function (array $row): void
-        {
-            foreach($row as $rows)
-            {
-                $this->factions =
-                    [
-                        "name" => $rows["name"],
-                        "description" => $rows["description"],
-                        "status" => $rows["status"],
-                        "players" => $rows["players"],
-                        "power" => $rows["power"],
-                        "money" => $rows["money"],
-                        "allies" => $rows["allies"],
-                        "claims" => $rows["claims"]
-                    ];
-            }
-        });
-        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Player_Load, [], function (array $row): void
-        {
-            foreach($row as $rows)
-            {
-                $this->players =
-                    [
-                        "name" => $rows["name"],
-                        "faction" => $rows["faction"],
-                        "role" => $rows["role"]
-                    ];
-            }
-        });
-        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Home_Load, [], function (array $row): void
-        {
-            foreach($row as $rows)
-            {
-                $this->home =
-                    [
-                        "name" => $rows["name"],
-                        "faction" => $rows["faction"],
-                        "x" => $rows["x"],
-                        "y" => $rows["y"],
-                        "z" => $rows["z"],
-                        "world" => $rows["world"]
-                    ];
-            }
-        });
-        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_Lang_Load, [], function (array $row): void
-        {
-            foreach($row as $rows)
-            {
-                $this->lang =
-                    [
-                        "name" => $rows["name"],
-                        "lang" => $rows["lang"]
-                    ];
+        $plugin->getDatabase()->executeSelect(QuerysInterface::FactionLegends_LoadData, [], function (array $rows): void {
+            foreach ($rows as $row) {
+                switch ($row["type"]) {
+                    case "faction":
+                        $this->factions[$row["name"]] = new Faction($row);
+                        break;
+                    case "player":
+                        $this->players[$row["name"]] = new Players($row);
+                        break;
+                    case "home":
+                        $this->home[$row["name"]] = $row;
+                        break;
+                    case "lang":
+                        $this->lang[$row["name"]] = $row["lang"];
+                        break;
+                }
             }
         });
     }
 
     public function existFaction(string $name): bool
     {
-        return array_key_exists($name, $this->factions);
+        return isset($this->factions[$name]);
     }
 
     public function existPlayer(string $name): bool
     {
-        return array_key_exists($name, $this->players);
+        return isset($this->players[$name]);
     }
 
-    public function getFaction(string $name): Faction
+    public function getFactionsData(): array
     {
-        return new Faction($this->factions[$name]);
+        return array_values($this->factions);
     }
 
-    public function getPlayer(string $name): Players
+    public function getFaction(string $name): ?Faction
     {
-        return new Players($this->players[$name]);
+        return $this->factions[$name] ?? null;
     }
 
-    public function createFaction(string $name, Player $creater): void
+    public function getPlayer(string $name): ?Players
     {
-        if(!$this->existFaction($name))
-        {
-            $this->factions[$name] = [
+        return $this->players[$name] ?? null;
+    }
+
+    public function createFaction(string $name, Player $creator): void
+    {
+        if (!$this->existFaction($name)) {
+            $factionData = [
                 "name" => $name,
                 "description" => FactionLegends::getInstance()->getLang()->getMessage("NO_DESCRPTION"),
                 "status" => "invited",
-                "players" => [$creater->getName()],
+                "players" => [$creator->getName()],
                 "power" => 0,
                 "money" => 0,
                 "allies" => [],
                 "claims" => []
             ];
-            $this->players[$creater->getName()] = [
-                "name" => $creater->getName(),
+
+            $faction = new Faction($factionData);
+            $this->factions[$name] = $faction;
+
+            $playerData = [
+                "name" => $creator->getName(),
                 "faction" => $name,
                 "role" => "leader"
             ];
-        }else{
-            $creater->sendMessage(FactionLegends::getInstance()->getLang()->getMessage("EXISTING_FACTION"));
+
+            $player = new Players($playerData);
+            $this->players[$creator->getName()] = $player;
+        } else {
+            throw new \RuntimeException("Faction already exists");
         }
     }
 }
