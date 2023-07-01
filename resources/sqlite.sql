@@ -1,6 +1,10 @@
 -- #! sqlite
 -- #{ factionlegends
 
+-- # { loaddata
+SELECT * FROM factions, players;
+-- # }
+
 -- # { faction
 
 -- # { init
@@ -17,10 +21,6 @@ CREATE TABLE IF NOT EXISTS factions
     );
 -- # }
 
--- # { load
-SELECT * FROM factions;
--- # }
-
 -- # }
 
 -- # { player
@@ -34,10 +34,6 @@ CREATE TABLE IF NOT EXISTS players
     role VARCHAR(255)
     );
 
--- # }
-
--- # { load
-SELECT * FROM players;
 -- # }
 
 -- # }
@@ -58,10 +54,6 @@ CREATE TABLE IF NOT EXISTS home
 
 -- # }
 
--- # { load
-SELECT * FROM home;
--- # }
-
 -- # }
 
 -- # { lang
@@ -71,13 +63,9 @@ SELECT * FROM home;
 CREATE TABLE IF NOT EXISTS lang
 (
     name VARCHAR(36) PRIMARY KEY,
-    lang VARCHAR(255),
+    lang VARCHAR(255)
     );
 
--- # }
-
--- # { load
-SELECT * FROM lang;
 -- # }
 
 -- # }
