@@ -25,8 +25,5 @@ interface QuerysInterface
 
     //LOAD
 
-    public const FactionLegends_Faction_Load = "factionlegends.faction.load";
-    public const FactionLegends_Player_Load = "factionlegends.player.load";
-    public const FactionLegends_Home_Load = "factionlegends.home.load";
-    public const FactionLegends_Lang_Load = "factionlegends.lang.load";
+    public const FactionLegends_LoadData = "factionlegends.loaddata";
 }
